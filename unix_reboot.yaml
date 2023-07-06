@@ -1,0 +1,40 @@
+---
+- name: Reboot Linux and AIX servers
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Reboot Linux servers
+      block:
+        - name: Check if the system is Linux
+          stat:
+            path: /etc/os-release
+          register: os_release
+
+        - name: Reboot Linux server
+          command: shutdown -r now
+          when: os_release.stat.exists
+      rescue:
+        - name: Handle error for Linux server reboot
+          debug:
+            msg: "Failed to reboot Linux server"
+      tags:
+        - linux
+
+    - name: Reboot AIX servers
+      block:
+        - name: Check if the system is AIX
+          stat:
+            path: /etc/oslevel
+          register: os_level
+
+        - name: Reboot AIX server
+          command: shutdown -Fr
+          when: os_level.stat.exists
+      rescue:
+        - name: Handle error for AIX server reboot
+          debug:
+            msg: "Failed to reboot AIX server"
+      tags:
+        - aix

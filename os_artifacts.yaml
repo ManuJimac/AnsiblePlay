@@ -21,7 +21,6 @@
            flat: yes
 
         - name: remove files
-          become: yes
           file:
            path: /tmp/os_output_{{ ansible_hostname }}.txt
            state: absent  

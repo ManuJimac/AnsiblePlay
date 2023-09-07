@@ -12,15 +12,15 @@
         - name: output
           copy:
            content: "{{ os_artifacts.stdout }}"
-           dest: /tmp/os_output_{{ ansible_hostname }}.txt
+           dest: /tmp/os_output_before_{{ ansible_hostname }}.txt
        
         - name: Fetch data to master node
           fetch:
-           src: /tmp/os_output_{{ ansible_hostname }}.txt
+           src: /tmp/os_output_before_{{ ansible_hostname }}.txt
            dest: /tmp/
            flat: yes
 
         - name: remove files
           file:
-           path: /tmp/os_output_{{ ansible_hostname }}.txt
+           path: /tmp/os_output_before_{{ ansible_hostname }}.txt
            state: absent  

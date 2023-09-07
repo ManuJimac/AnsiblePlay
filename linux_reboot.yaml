@@ -1,5 +1,5 @@
 ---
-- name: Reboot Linux and AIX servers
+- name: Reboot Linux servers
   hosts: linux
   gather_facts: false
   become: true

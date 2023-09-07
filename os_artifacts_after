@@ -1,0 +1,26 @@
+---
+- name: Linux OS Artifacts collection
+  hosts: linux
+  gather_facts: yes
+  become: true
+
+  tasks:
+        - name: Collecting data
+          shell: uname -a;echo "------------------";uptime;echo "";df -ThP
+          register: os_artifacts
+
+        - name: output
+          copy:
+           content: "{{ os_artifacts.stdout }}"
+           dest: /tmp/os_output_after_{{ ansible_hostname }}.txt
+       
+        - name: Fetch data to master node
+          fetch:
+           src: /tmp/os_output_after_{{ ansible_hostname }}.txt
+           dest: /tmp/
+           flat: yes
+
+        - name: remove files
+          file:
+           path: /tmp/os_output_after_{{ ansible_hostname }}.txt
+           state: absent  

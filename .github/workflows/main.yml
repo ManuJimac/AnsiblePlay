@@ -25,8 +25,8 @@ jobs:
       run: ansible-playbook os_artifacts.yaml
       env:
         ANSIBLE_HOST_KEY_CHECKING: False  # Disable host key checking if needed
-      with:
-        your_playbook.yml: os_artifacts.yaml  # Replace with the path to your playbook
+      #with:
+        #your_playbook.yml: os_artifacts.yaml  # Replace with the path to your playbook
 
     - name: Cleanup
       run: |

@@ -1,0 +1,33 @@
+name: Ansible Playbook
+
+on:
+  push:
+    branches:
+      - main  # Replace with the branch you want to trigger the workflow
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # You can choose a different runner if needed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Choose the Python version you need
+
+    #- name: Install Ansible
+      #run: pip install ansible
+
+    - name: Run Ansible playbook
+      run: ansible-playbook os_artifacts.yaml
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: False  # Disable host key checking if needed
+      with:
+        your_playbook.yml: /root/playbook/  # Replace with the path to your playbook
+
+    - name: Cleanup
+      run: |
+        rm -rf ~/.ansible

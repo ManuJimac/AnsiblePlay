@@ -26,7 +26,7 @@ jobs:
       env:
         ANSIBLE_HOST_KEY_CHECKING: False  # Disable host key checking if needed
       with:
-        your_playbook.yml: /root/playbook/os_artifacts.yaml  # Replace with the path to your playbook
+        your_playbook.yml: os_artifacts.yaml  # Replace with the path to your playbook
 
     - name: Cleanup
       run: |

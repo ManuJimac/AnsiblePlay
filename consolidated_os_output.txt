@@ -1,0 +1,38 @@
+============================================================================================
+Linux OS Parameters Report for linux1
+--------------------------------------------------------
+
+Hostname: linux1
+OS: CentOS 7.9
+Kernel Version: 3.10.0-1160.102.1.el7.x86_64
+Architecture: x86_64
+Memory: 990 MB
+
+Disk Space:
+  /boot: 0.99 GB
+  Free Space: 0.8 GB
+  FS_Type: xfs
+  /: 6.19 GB
+  Free Space: 4.59 GB
+  FS_Type: xfs
+
+==============================================================================================
+============================================================================================
+Linux OS Parameters Report for linux2
+--------------------------------------------------------
+
+Hostname: linux2
+OS: CentOS 7.9
+Kernel Version: 3.10.0-1160.102.1.el7.x86_64
+Architecture: x86_64
+Memory: 990 MB
+
+Disk Space:
+  /boot: 0.99 GB
+  Free Space: 0.8 GB
+  FS_Type: xfs
+  /: 6.19 GB
+  Free Space: 4.59 GB
+  FS_Type: xfs
+
+==============================================================================================

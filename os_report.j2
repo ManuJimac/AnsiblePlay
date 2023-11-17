@@ -1,0 +1,18 @@
+============================================================================================
+Linux OS Parameters Report for {{ ansible_hostname }}
+--------------------------------------------------------
+
+Hostname: {{ ansible_hostname }}
+OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+Kernel Version: {{ ansible_kernel }}
+Architecture: {{ ansible_architecture }}
+Memory: {{ ansible_memtotal_mb }} MB
+
+Disk Space:
+{% for mount in ansible_mounts %}
+  {{ mount.mount }}: {{ (mount.size_total | int / 1024 / 1024 / 1024) | round(2) }} GB
+  Free Space: {{ (mount.size_available | int / 1024 / 1024 / 1024) | round(2) }} GB
+  FS_Type: {{ mount.fstype }}
+{% endfor %}
+
+==============================================================================================

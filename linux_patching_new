@@ -1,0 +1,32 @@
+---
+- name: Linux Patching Playbook
+  hosts: linux
+  gather_facts: True
+  become: true
+  become_method: dzdo
+
+  tasks:
+    - name: Update packages
+      yum:
+        name: "*"
+        state: latest
+      register: package_upgrade
+
+    - name: Reboot
+      command: shutdown -Fr now
+      async: 0
+      poll: 0
+      ignore_errors: true
+      when: package_upgrade.changed
+
+    - name: Pause for a min to system to come-up
+      pause:
+       seconds: 60
+
+    - name: Uptime
+      command: uptime
+      register: uptime_output
+
+    - name: display
+      debug:
+        var: uptime_output.stdout_lines
